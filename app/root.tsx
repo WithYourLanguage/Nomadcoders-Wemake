@@ -23,9 +23,11 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+/* 레이아웃 컴포넌트를 이용하는 이유는 'children'에 실제 페이지를 렌더링하거나
+ErrorBoundary를 렌더링하기 위해서 */
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,9 +44,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return <Outlet />; // Outlet은 실제 이용자에게 보여져야 할 페이지를 렌더링하는 컴포넌트
 }
 
+// User에게 error가 발생한 경우 보여주는 컴포넌트
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
   let details = "An unexpected error occurred.";
