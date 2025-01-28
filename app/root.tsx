@@ -32,19 +32,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        {/* 메타 데이터를 렌더링하는 컴포넌트, Maker Masterclass 1Basics 1.3참고 */}
         <Links />
+        {/* 모든 링크를 렌더링하는 컴포넌트, Maker Masterclass 1Basics 1.3참고 */}
       </head>
       <body>
         {children}
-        <ScrollRestoration />
-        <Scripts />
+        <ScrollRestoration /> {/* 스크롤 위치를 기억하고 복원하는 컴포넌트 */}
+        <Scripts /> {/* 브라우저에 보내는 모든 자바스크립트 코드 */}
       </body>
     </html>
   );
 }
 
 export default function App() {
-  return <Outlet />; // Outlet은 실제 이용자에게 보여져야 할 페이지를 렌더링하는 컴포넌트
+  return <Outlet />; // Outlet은 실제 이용자에게 보여져야 할 내용을 렌더링하는 컴포넌트
 }
 
 // User에게 error가 발생한 경우 보여주는 컴포넌트
