@@ -8,7 +8,11 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import "./app.css";
+// import "./app.css"; 기존에 자동으로 생성된 코드
+// Nico 코드는 import stylesheet from "./app.css?url"
+import stylesheet from "./app.css?url";
+
+console.log(stylesheet);
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -21,9 +25,10 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  { rel: "stylesheet", href: stylesheet }, // 니꼬 코드 확인 후 추가함
 ];
 
-/* 레이아웃 컴포넌트를 이용하는 이유는 'children'에 실제 페이지를 렌더링하거나
+/* 레이아웃 컴포넌트를 이용하는 이 유는 'children'에 실제 페이지를 렌더링하거나
 ErrorBoundary를 렌더링하기 위해서 */
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

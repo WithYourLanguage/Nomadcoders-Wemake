@@ -10,7 +10,7 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-white dark:bg-gray-950; /*'apply는 css파일에서 tailwind 적용할 때 사용하는 함수*/
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
