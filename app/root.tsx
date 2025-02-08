@@ -11,6 +11,7 @@ import type { Route } from "./+types/root";
 // import "./app.css"; 기존에 자동으로 생성된 코드
 // Nico 코드는 import stylesheet from "./app.css?url"
 import stylesheet from "./app.css?url";
+import Navigation from "./common/components/navigation";
 
 console.log(stylesheet);
 
@@ -51,7 +52,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />; // Outlet은 실제 이용자에게 보여져야 할 내용을 렌더링하는 컴포넌트
+  return (
+    <>
+      <Navigation />
+      {/* 여기에 Navigation 컴포넌트를 추가하면 error가 없을 땐 렌더링되지 않음
+      만약 error가 있어도 렌더링하고 싶다면 위 body 안에 넣어야 함. 
+      (자세한 내용은 노마드코더 Maker Class #3, 3.1, 4분 30초 참고)
+      */}
+      <Outlet />
+    </>
+  ); // Outlet은 실제 이용자에게 보여져야 할 내용을 렌더링하는 컴포넌트
 }
 
 // User에게 error가 발생한 경우 보여주는 컴포넌트
