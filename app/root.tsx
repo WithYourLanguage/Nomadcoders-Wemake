@@ -53,7 +53,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <>
+    <div className="py-28">
       <Navigation
         isLoggedIn={true}
         hasNotifications={true}
@@ -64,7 +64,7 @@ export default function App() {
       (자세한 내용은 노마드코더 Maker Class #3, 3.1, 4분 30초 참고)
       */}
       <Outlet />
-    </>
+    </div>
   ); // Outlet은 실제 이용자에게 보여져야 할 내용을 렌더링하는 컴포넌트
 }
 
