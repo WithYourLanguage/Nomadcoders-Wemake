@@ -54,7 +54,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <>
-      <Navigation />
+      <Navigation
+        isLoggedIn={true}
+        hasNotifications={true}
+        hasMessages={true}
+      />
       {/* 여기에 Navigation 컴포넌트를 추가하면 error가 없을 땐 렌더링되지 않음
       만약 error가 있어도 렌더링하고 싶다면 위 body 안에 넣어야 함. 
       (자세한 내용은 노마드코더 Maker Class #3, 3.1, 4분 30초 참고)
