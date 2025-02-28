@@ -15,6 +15,7 @@ import { IdeaCard } from "~/features/ideas/components/idea-card";
 import { Badge } from "../components/ui/badge";
 import { JobCard } from "~/features/jobs/components/job-card";
 import { TeamCard } from "~/features/teams/components/team-card";
+import type { Route } from "./+types/home-page";
 
 export const meta: MetaFunction = () => {
   return [
@@ -31,7 +32,9 @@ export function loader() {
   };
 }
 
-export default function HomePage({ loaderData }) {
+/* Route.ComponentProps에 관한 내용은 노마드코더 마스터클래스 #3, 3.12참고
+ Route.ComponentProps는 자동으로 각 페이지마다 생성되는 타입 */
+export default function HomePage({ loaderData }: Route.ComponentProps) {
   return (
     <div className="px-20 space-y-40">
       <div className="grid grid-cols-3 gap-4">
