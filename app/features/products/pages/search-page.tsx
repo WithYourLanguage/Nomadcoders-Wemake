@@ -1,32 +1,28 @@
-import type { Route } from "~/types";
-import type { MetaFunction } from "react-router";
-
-interface Props extends Route.ComponentProps {}
+import type { Route } from "../../../+types/features/products/pages/search-page";
+import type { MetaFunction } from "@react-router/types";
 
 export function meta(): MetaFunction {
   return [
-    { title: "제품 검색 | Product Hunt 클론" },
-    { name: "description", content: "제품 검색" },
+    { title: "Search Products | ProductHunt Clone" },
+    { name: "description", content: "Search for products" },
   ];
 }
 
 export function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
   const query = url.searchParams.get("q") || "";
-  
+
   return {
     query,
-    results: [],
+    results: [], // Add search logic
   };
 }
 
-export default function SearchPage({ loaderData }: Props) {
-  const { query, results } = loaderData;
-
+export default function SearchPage({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="container py-6">
-      <h1 className="text-3xl font-bold mb-6">검색 결과: {query}</h1>
-      {/* 검색 결과 목록 */}
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">Search Results</h1>
+      {/* Add search results */}
     </div>
   );
-} 
+}

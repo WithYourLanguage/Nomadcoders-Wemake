@@ -1,28 +1,24 @@
-import type { Route } from "~/types";
-import type { MetaFunction } from "react-router";
-
-interface Props extends Route.ComponentProps {}
+import type { Route } from "../../../+types/features/products/pages/leaderboard-page";
+import type { MetaFunction } from "@react-router/types";
 
 export function meta(): MetaFunction {
   return [
-    { title: "리더보드 | Product Hunt 클론" },
-    { name: "description", content: "인기 제품 순위" },
+    { title: "Leaderboard | ProductHunt Clone" },
+    { name: "description", content: "Top products leaderboard" },
   ];
 }
 
-export function loader({}: Route.LoaderArgs) {
+export function loader({ request }: Route.LoaderArgs) {
   return {
-    topProducts: [],
+    topProducts: [], // Add leaderboard logic
   };
 }
 
-export default function LeaderboardPage({ loaderData }: Props) {
-  const { topProducts } = loaderData;
-
+export default function LeaderboardPage({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="container py-6">
-      <h1 className="text-3xl font-bold mb-6">리더보드</h1>
-      {/* 리더보드 내용 */}
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">Leaderboard</h1>
+      {/* Add leaderboard content */}
     </div>
   );
-} 
+}

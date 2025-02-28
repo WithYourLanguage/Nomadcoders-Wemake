@@ -1,12 +1,15 @@
-import type { Route } from "~/types";
-import type { MetaFunction } from "react-router";
+import type { Route } from "../../../+types/features/products/pages/weekly-leaderboard-page";
+import type { MetaFunction } from "@react-router/types";
 
-interface Props extends Route.ComponentProps {}
-
-export function meta(): MetaFunction {
+export function meta({ params }: Route.MetaArgs): MetaFunction {
   return [
-    { title: "주간 리더보드 | Product Hunt 클론" },
-    { name: "description", content: "주간 인기 제품" },
+    {
+      title: `Week ${params.week}, ${params.year} Leaderboard | ProductHunt Clone`,
+    },
+    {
+      name: "description",
+      content: `Top products of week ${params.week}, ${params.year}`,
+    },
   ];
 }
 
@@ -14,17 +17,19 @@ export function loader({ params }: Route.LoaderArgs) {
   return {
     year: params.year,
     week: params.week,
-    products: [],
+    products: [], // Add weekly leaderboard logic
   };
 }
 
-export default function WeeklyLeaderboardPage({ loaderData }: Props) {
-  const { year, week, products } = loaderData;
-
+export default function WeeklyLeaderboardPage({
+  loaderData,
+}: Route.ComponentProps) {
   return (
-    <div className="container py-6">
-      <h1 className="text-3xl font-bold mb-6">{year}년 {week}주차 최고의 제품</h1>
-      {/* 주간 리더보드 내용 */}
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">
+        Top Products of Week {loaderData.week}, {loaderData.year}
+      </h1>
+      {/* Add weekly leaderboard content */}
     </div>
   );
-} 
+}

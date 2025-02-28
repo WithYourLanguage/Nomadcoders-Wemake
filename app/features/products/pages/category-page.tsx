@@ -1,29 +1,25 @@
-import type { Route } from "~/types";
-import type { MetaFunction } from "react-router";
+import type { Route } from "../../../+types/features/products/pages/category-page";
+import type { MetaFunction } from "@react-router/types";
 
-interface Props extends Route.ComponentProps {}
-
-export function meta(): MetaFunction {
+export function meta({ params }: Route.MetaArgs): MetaFunction {
   return [
-    { title: "카테고리 제품 | Product Hunt 클론" },
-    { name: "description", content: "카테고리별 제품 목록" },
+    { title: `${params.category} | ProductHunt Clone` },
+    { name: "description", content: `Browse ${params.category} products` },
   ];
 }
 
 export function loader({ params }: Route.LoaderArgs) {
   return {
     category: params.category,
-    products: [],
+    products: [], // Add category products fetch logic
   };
 }
 
-export default function CategoryPage({ loaderData }: Props) {
-  const { category, products } = loaderData;
-
+export default function CategoryPage({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="container py-6">
-      <h1 className="text-3xl font-bold mb-6">{category} 제품</h1>
-      {/* 카테고리별 제품 목록 */}
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">{loaderData.category}</h1>
+      {/* Add category products grid */}
     </div>
   );
-} 
+}

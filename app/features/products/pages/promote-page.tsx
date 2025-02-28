@@ -1,29 +1,24 @@
-import type { Route } from "~/types";
-import type { MetaFunction } from "react-router";
-
-interface Props extends Route.ComponentProps {}
+import type { Route } from "../../../+types/features/products/pages/promote-page";
+import type { MetaFunction } from "@react-router/types";
 
 export function meta(): MetaFunction {
   return [
-    { title: "제품 홍보 | Product Hunt 클론" },
-    { name: "description", content: "제품 홍보하기" },
+    { title: "Promote Product | ProductHunt Clone" },
+    { name: "description", content: "Promote your product" },
   ];
 }
 
-export function loader({}: Route.LoaderArgs) {
-  return {};
+export function loader({ request }: Route.LoaderArgs) {
+  return {
+    promotionOptions: [], // Add promotion options
+  };
 }
 
-export function action({ request }: Route.ActionArgs) {
-  // 제품 홍보 로직
-  return {};
-}
-
-export default function PromotePage({ loaderData, actionData }: Props) {
+export default function PromotePage({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="container py-6">
-      <h1 className="text-3xl font-bold mb-6">제품 홍보하기</h1>
-      {/* 제품 홍보 폼 */}
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">Promote Your Product</h1>
+      {/* Add promotion options */}
     </div>
   );
-} 
+}

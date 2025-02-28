@@ -1,29 +1,23 @@
-import type { Route } from "~/types";
-import type { MetaFunction } from "react-router";
-
-interface Props extends Route.ComponentProps {}
+import type { Route } from "../../../+types/features/products/pages/submit-page";
+import type { MetaFunction } from "@react-router/types";
 
 export function meta(): MetaFunction {
   return [
-    { title: "제품 등록 | Product Hunt 클론" },
-    { name: "description", content: "새로운 제품 등록하기" },
+    { title: "Submit Product | ProductHunt Clone" },
+    { name: "description", content: "Submit your product" },
   ];
 }
 
-export function loader({}: Route.LoaderArgs) {
-  return {};
-}
-
 export function action({ request }: Route.ActionArgs) {
-  // 제품 등록 로직
+  // Add product submission logic
   return {};
 }
 
-export default function SubmitPage({ loaderData, actionData }: Props) {
+export default function SubmitPage({ actionData }: Route.ComponentProps) {
   return (
-    <div className="container py-6">
-      <h1 className="text-3xl font-bold mb-6">제품 등록하기</h1>
-      {/* 제품 등록 폼 */}
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">Submit Your Product</h1>
+      {/* Add submission form */}
     </div>
   );
-} 
+}
