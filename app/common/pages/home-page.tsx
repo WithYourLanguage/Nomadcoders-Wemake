@@ -24,23 +24,13 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-// loader 함수는 ui가 유저에게 보이기 전에 백엔드에서 실행된다
-export function loader() {
-  console.log("hello");
-  return {
-    hello: "world",
-  };
-}
-
-/* Route.ComponentProps에 관한 내용은 노마드코더 마스터클래스 #3, 3.12참고
- Route.ComponentProps는 자동으로 각 페이지마다 생성되는 타입 */
-export default function HomePage({ loaderData }: Route.ComponentProps) {
+export default function HomePage() {
   return (
     <div className="px-20 space-y-40">
       <div className="grid grid-cols-3 gap-4">
         <div>
           <h2 className="text-5xl font-bold leading-tight tracking-tight">
-            Today's Products {JSON.stringify(loaderData)}
+            Today's Products
           </h2>
           <p className="text-xl font-light text-foreground">
             The best products made by our community today
