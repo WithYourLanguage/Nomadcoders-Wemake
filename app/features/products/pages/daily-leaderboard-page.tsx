@@ -1,10 +1,14 @@
 import { DateTime } from "luxon";
 import type { Route } from "./+types/daily-leaderboard-page";
-import { data, isRouteErrorResponse } from "react-router";
+import { data, isRouteErrorResponse, Link } from "react-router";
 import { z } from "zod";
+import { Hero } from "~/common/components/hero";
+import { ProductCard } from "../components/product-card";
+import { Button } from "~/common/components/ui/button";
+import ProductPagination from "~/common/components/product-pagination";
 
 const paramsSchema = z.object({
-  year: z.coerce.number(), // year을 숫자로 바꾸려고 시도하고 에러가 발생하면 알려준다(a, 가와 같은 문자 확인)
+  year: z.coerce.number(), // year을 숫자로 바꾸려고 시도하고 에러가 발생하면 알려준다('a', '가'와 같은 문자 확인)
   month: z.coerce.number(),
   day: z.coerce.number(),
 });
@@ -41,13 +45,60 @@ export const loader = ({ params }: Route.LoaderArgs) => {
     );
   }
   return {
-    date,
+    ...parsedData,
   };
 };
 export default function DailyLeaderboardPager({
   loaderData,
 }: Route.ComponentProps) {
-  return <div className="container mx-auto px-4 py-8"></div>;
+  const urlDate = DateTime.fromObject({
+    year: loaderData.year,
+    month: loaderData.month,
+    day: loaderData.day,
+  });
+  const previousDay = urlDate.minus({ days: 1 });
+  const nextDay = urlDate.plus({ days: 1 });
+  const isToday = urlDate.equals(DateTime.now().startOf("day"));
+  return (
+    <div className="space-y-10">
+      <Hero
+        title={`The best products of ${urlDate.toLocaleString(
+          DateTime.DATE_MED
+        )}`}
+      />
+      <div className="flex items-center justify-center gap-2">
+        <Button asChild variant="secondary">
+          <Link
+            to={`/products/leaderboards/daily/${previousDay.year}/${previousDay.month}/${previousDay.day}`}
+          >
+            &larr; {previousDay.toLocaleString(DateTime.DATE_SHORT)}
+          </Link>
+        </Button>
+        {!isToday ? (
+          <Button asChild variant="secondary">
+            <Link
+              to={`/products/leaderboards/daily/${nextDay.year}/${nextDay.month}/${nextDay.day}`}
+            >
+              {nextDay.toLocaleString(DateTime.DATE_SHORT)} &rarr;
+            </Link>
+          </Button>
+        ) : null}
+      </div>
+      <div className="space-y-5 w-full max-w-screen-md mx-auto">
+        {Array.from({ length: 10 }).map((_, index) => (
+          <ProductCard
+            id="productId"
+            name="Product Name"
+            description="Product Description"
+            commentsCount={12}
+            viewsCount={12}
+            upvotesCount={120}
+          />
+        ))}
+      </div>
+      <ProductPagination totalPages={10} />
+    </div>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

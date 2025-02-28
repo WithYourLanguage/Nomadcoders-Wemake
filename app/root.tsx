@@ -12,6 +12,7 @@ import type { Route } from "./+types/root";
 // Nico 코드는 import stylesheet from "./app.css?url"
 import stylesheet from "./app.css?url";
 import Navigation from "./common/components/navigation";
+import { Settings } from "luxon";
 
 console.log(stylesheet);
 
@@ -32,6 +33,8 @@ export const links: Route.LinksFunction = () => [
 /* 레이아웃 컴포넌트를 이용하는 이 유는 'children'에 실제 페이지를 렌더링하거나
 ErrorBoundary를 렌더링하기 위해서 */
 export function Layout({ children }: { children: React.ReactNode }) {
+  Settings.defaultLocale = "ko";
+  Settings.defaultZone = "Asia/Seoul";
   return (
     <html lang="ko" className="dark">
       <head>
